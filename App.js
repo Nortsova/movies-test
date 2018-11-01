@@ -18,6 +18,15 @@ const RootStack = createStackNavigator({
 },
 {
   initialRouteName: 'Home',
+  cardStyle: {
+    backgroundColor: '#f8f7fb',
+  },
+  navigationOptions: {
+    headerTintColor: '#6b52ae',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  },
 });
 
 export default class App extends React.Component {
@@ -36,6 +45,9 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+  },
+  white: {
     backgroundColor: '#fff',
   }
 });

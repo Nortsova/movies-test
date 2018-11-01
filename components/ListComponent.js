@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class MoviesList extends Component {
   renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.item} onPress={() => this.props.navigation.navigate('Movie', {title: item.title})}>
+    <TouchableOpacity style={styles.item} onPress={() => this.props.navigation.navigate('Movie', {title: item.title, item})}>
       <Text >{item.title}</Text>
     </TouchableOpacity>
   );
@@ -22,7 +22,7 @@ class MoviesList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   item: {
     padding: 16,
