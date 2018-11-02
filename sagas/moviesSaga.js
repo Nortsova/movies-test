@@ -1,18 +1,19 @@
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, put, all } from 'redux-saga/effects';
 import request from '../api/request';
 import { loadMovies, moviesLoaded } from '../actions';
 import { normalize } from '../utils';
+import { LOAD_MOVIES, MOVIES_URL } from '../constants';
 
 
 function* loadMoviesSaga() {
-  const data  = yield request('https://tender-mclean-00a2bd.netlify.com/mobile/movies.json');
+  const data  = yield request(MOVIES_URL);
   const normalizedData = normalize(data);
   yield put(moviesLoaded(normalizedData));
 }
 
 export default function* moviesSaga() {
-  yield [
-    takeEvery('LOAD_MOVIES', loadMoviesSaga),
-  ];
+  yield all([
+    takeEvery(LOAD_MOVIES, loadMoviesSaga),
+  ]);
   yield put(loadMovies());
 }

@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-create-reducer';
+import { MOVIES_LOADED } from '../constants';
 
 const initialState = {
     allIds: [],
@@ -6,7 +7,7 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
-  ['MOVIES_LOADED']: (state, { payload: { data } }) => (data),
+  [MOVIES_LOADED]: (state, { payload: { data } }) => (data),
 });
 
 export default reducer;

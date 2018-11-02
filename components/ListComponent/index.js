@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, FlatList, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import styles from './styles';
 
 class MoviesList extends Component {
   renderItem = ({ item }) => (
@@ -20,16 +21,7 @@ class MoviesList extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  item: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc'
-  }
-});
+
 
 const mapStateToProps = state => {
   let storedMovies = state.movies.allIds.map((ids) => ({ key: ids , ...state.movies.byIds[ids] }));

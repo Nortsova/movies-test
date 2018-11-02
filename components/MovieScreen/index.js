@@ -1,12 +1,12 @@
 
 
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { TouchableOpacity, View, TextInput, KeyboardAvoidingView, FlatList, Text, AlertIOS } from 'react-native';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
 import CommentItem from '../CommentItem';
 import { addComment } from '../../actions';
+import styles from './styles';
 
 class MovieScreen extends Component {
     state = {
@@ -58,22 +58,21 @@ class MovieScreen extends Component {
         const { navigation } = this.props;
         const item = navigation.getParam('item', {});
         return (
-            <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
-                <View style={{flex: 1, padding: 20}}>
+            <KeyboardAvoidingView style={styles.fill} behavior="padding" enabled>
+                <View style={styles.commentWrapper}>
                     <FlatList
             data={(this.props.data || [])}
             renderItem={this.renderItem}
         />
         </View>
-                    <View style={{backgroundColor: '#eee', position: 'relative'}}>
+                    <View style={styles.commentInputWrapper}>
                         <TextInput
-                            style={{height: 40, borderColor: '#6b52ae', borderWidth: 1, borderRadius: 30, margin: 10, paddingLeft: 14, paddingRight: 14, backgroundColor: '#fff'}}
+                            style={styles.commentInput}
                             onChangeText={(text) => this.setState({text})}
                             value={this.state.text}
                             placeholder="Write comment"
                         />
-                        <TouchableOpacity onPress={this.onPressSubmit} style={{backgroundColor: '#6b52ae', position: 'absolute',
-                        right: 10, top: 10, borderRadius: 30, paddingLeft: 25, paddingRight: 25, minWidth: 100, alignItems: 'center'}}><Text style={{color: '#fff', height: 40, lineHeight: 40}}>Submit</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={this.onPressSubmit} style={styles.commentSubmit}><Text style={styles.commentSubmitText}>Submit</Text></TouchableOpacity>
                     </View>
             </KeyboardAvoidingView>
         );
@@ -81,16 +80,13 @@ class MovieScreen extends Component {
 }
 const mapStateToProps = (state, props) => {
     const item = props.navigation.getParam('item', {});
-    const storedComments = Object.values(state.comments.byMovieIds[item.id]);
+    const storedComments = Object.values((state.comments.byMovieIds[item.id] || {})).map((item) => ({ key: item.id , ...item }));
     return {
       data: storedComments
     };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = {
     addComment,
-}, dispatch);
-  
-  
-  
+};
   export default connect(mapStateToProps, mapDispatchToProps)(MovieScreen);

@@ -3,6 +3,7 @@
 
 
 import { createReducer } from 'redux-create-reducer';
+import { COMMENT_ADDED, COMMENTS_LOADED } from '../constants';
 
 const initialState = {
     allIds: [],
@@ -11,7 +12,7 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
-    ['COMMENT_ADDED']: (state, { payload: { data } }) => ({
+    [COMMENT_ADDED]: (state, { payload: { data } }) => ({
         ...state,
         allIds: [...state.allIds, data.comment.id],
         byIds: {
@@ -26,6 +27,6 @@ const reducer = createReducer(initialState, {
             },
         },
     }),
-    ['COMMENTS_LOADED']: (state, { payload: { data }}) => data,
+    [COMMENTS_LOADED]: (state, { payload: { data }}) => data || state,
   });
 export default reducer;
