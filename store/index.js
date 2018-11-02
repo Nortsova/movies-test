@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-// import promise from 'redux-promise';
 import createSagaMiddleware from 'redux-saga';
 
 import reducer from '../reducers';

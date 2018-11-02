@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     bold: {
       fontWeight: 'bold',
     },
-  });
-  
+});
 
 export default BoldText;

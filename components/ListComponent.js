@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  let storedMovies = state.movies.map((repo, index) => ({ key: `${repo.year}${repo.title}${index}` , ...repo }));
+  let storedMovies = state.movies.allIds.map((ids) => ({ key: ids , ...state.movies.byIds[ids] }));
 
   return {
     data: storedMovies
