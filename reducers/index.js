@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import movies from './movies';
-import comments from './comments';
+import { combineReducers } from "redux";
+import movies from "./movies";
+import comments from "./comments";
 
 const reducer = combineReducers({
-    movies,
-    comments,
+  movies,
+  comments
 });
 
 export default reducer;

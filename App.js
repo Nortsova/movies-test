@@ -1,50 +1,53 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Provider } from 'react-redux';
-import { createStackNavigator } from 'react-navigation';
-import storeData from './store';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
+import { Provider } from "react-redux";
+import { createStackNavigator } from "react-navigation";
+import storeData from "./store";
 
-import MoviesList from './components/ListComponent';
-import MovieScreen from './components/MovieScreen';
+import ListScreen from "./containers/ListScreen";
+import MovieScreen from "./containers/MovieScreen";
 
-
-const RootStack = createStackNavigator({
-  Home: {
-    screen: MoviesList,
-  },
-  Movie: {
-    screen: MovieScreen,
-  }
-},
-{
-  initialRouteName: 'Home',
-  cardStyle: {
-    backgroundColor: '#f8f7fb',
-  },
-  navigationOptions: {
-    headerTintColor: '#6b52ae',
-    headerTitleStyle: {
-      fontWeight: 'bold',
+const RootStack = createStackNavigator(
+  {
+    Home: {
+      screen: ListScreen
     },
+    Movie: {
+      screen: MovieScreen
+    }
   },
-});
+  {
+    initialRouteName: "Home",
+    cardStyle: {
+      backgroundColor: "#f8f7fb"
+    },
+    navigationOptions: {
+      headerTintColor: "#6b52ae",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
+  }
+);
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
-    return <Provider store={storeData}>
-    <View style={styles.container}>
-      <RootStack />
-    </View>
-  </Provider>;
+    return (
+      <Provider store={storeData}>
+        <View style={styles.container}>
+          <RootStack />
+        </View>
+      </Provider>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   },
   white: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   }
 });
