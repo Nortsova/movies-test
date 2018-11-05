@@ -32,3 +32,6 @@ Code divides by this folders:
 I use redux for easier use store. And i use sagas for side effects like connecting to database or requests to other API.
 In containers i hold all aplication screens.
 All components located in components folder.
+
+# Improvement
+I would like add some validations, add authorization for saving user name, also test UI part and includes all cases what user can do in this app.
